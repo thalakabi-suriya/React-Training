@@ -1,0 +1,60 @@
+import React from "react";
+import ThemeProvider from "./components/ThemeProvider";
+import ThemedComponent from "./components/ThemedComponent";
+const App=()=> {
+  return (
+    <>
+      <ThemeProvider>
+        <ThemedComponent />
+      </ThemeProvider>
+    </>
+  );
+}
+export default App;
+
+
+
+
+import {createContext} from 'react';
+const ThemeContext = createContext();
+
+export default ThemeContext;
+
+
+
+import React,{useState} from 'react'
+import { ThemeContext } from 'styled-components';
+
+const ThemeProvider = ({children}) => {
+    const [theme,setTheme]=useState('light')
+    const toggleTheme = () => {
+        setTheme((prevTheme)=>(prevTheme==="light" ? "dark":"light"))
+    };
+  return (
+    <ThemeContext.Provider value={{theme,toggleTheme}}>
+      {children}
+    </ThemeContext.Provider>
+  )
+}
+
+export default ThemeProvider
+
+
+
+import React, { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
+
+const ThemedComponent = () => {
+    const {theme,toggleTheme}=useContext(ThemeContext)
+  return (
+    <>
+      <center><h1 style={{backgroundColor:theme==='dark'?'#000000':'#ffffff',color:'green'}}>Hello World</h1>
+      <button onClick={toggleTheme}>Click Here</button>{' '}
+      {theme}
+      </center>
+    </>
+  )
+}
+
+export default ThemedComponent
+

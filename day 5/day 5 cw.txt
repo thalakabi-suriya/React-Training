@@ -1,0 +1,23 @@
+resourceType program:
+import React,{useEffect,useState} from 'react'
+const LifeCycle=()=>{
+const[resourceType,setResourceType]=useState("posts");
+console.log("component mounted",resourceType);
+useEffect(()=>{
+console.log("updated",resourceType)
+return()=>{
+console.log("unmounted",resourceType)
+}
+},[resourceType])
+return(
+<div>
+<center>
+<button onClick={()=>setResourceType("posts")}>posts</button>
+<button onClick={()=>setResourceType("users")}>users</button>
+<button onClick={()=>setResourceType("comments")}>comments</button>
+<h2>{resourceType}</h2>
+</center>
+</div>
+)
+}
+export default LifeCycle

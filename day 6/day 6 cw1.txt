@@ -1,0 +1,53 @@
+Create a parent in react:
+import React from 'react'
+import ParentComponentA from './ParentComponentA'
+import ParentComponentB from './ParentComponentB'
+function App()
+{
+return(
+<>
+<ParentComponentA />
+<ParentComponentB />
+</>
+)
+}
+export default App
+import React from 'react'
+import SharedListComponent from './SharedListComponent'
+const ParentComponentA=()=>{
+const dataA=[1,2,3,4]
+return(
+<div>
+<h1>Parent Component A</h1>
+<SharedListComponent data={dataA}/>
+</div>
+)
+}
+export default ParentComponentA
+import React from 'react'
+import SharedListComponent from './SharedListComponent'
+const ParentComponentB=()=>{
+const dataB=[6,7,8,9]
+return(
+<div>
+<h1>Parent Component B</h1>
+<SharedListComponent data={dataB}/>
+</div>
+)
+}
+export default ParentComponentB
+import React from 'react'
+const SharedListComponent=({data})=>{
+return(
+<div>
+<h1>Shared Component</h1>
+<ul>
+{data.map((item,index)=>(
+<li key={index}>{item}</li>
+))}
+</ul>
+</div>
+Create a parent in react:
+)
+}
+export default SharedListComponent
